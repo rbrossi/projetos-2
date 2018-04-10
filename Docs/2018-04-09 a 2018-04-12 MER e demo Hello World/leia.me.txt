@@ -1,1 +1,1 @@
- 
+Iniciado MER com as estruturas que desejamos construir.
