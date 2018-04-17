@@ -1,0 +1,2 @@
+09/04 - Iniciado MER com as estruturas que desejamos construir.
+13/04 -  Definida as tabelas base para o projeto
