@@ -19,8 +19,8 @@ public class ConectaBD {
 		
 		try {			
 			Class.forName("com.mysql.jdbc.Driver");
-//			return  DriverManager.getConnection("jdbc:mysql://mysqlportuga.unifique.com.br/mysqlpor_projetos2_db", "mysqlpor_projeto", "mysqllimpai");			
-			return  DriverManager.getConnection("jdbc:mysql://127.0.0.1/limpai", "root", "root");			
+			return  DriverManager.getConnection("jdbc:mysql://mysqlportuga.unifique.com.br/mysqlpor_projetos2_db", "mysqlpor_projeto", "mysqllimpai");			
+//			return  DriverManager.getConnection("jdbc:mysql://127.0.0.1/limpai", "root", "root");			
 	} catch (Exception e) {
 		throw new Exception(e);
 	}
