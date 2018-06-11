@@ -57,6 +57,14 @@
 		</div>
 	</div>
 	
+<div class="btn-group">
+		<select class="form-control">
+				<option value="">Ordenar</option>
+				<option value="">A-Z</option>
+				<option value="all">Valor crescente</option>
+				<option value="selected">Valor decrescente </option>
+		</select>
+</div>
 
 <table class="table table-striped table-bordered">
 	<thead>
