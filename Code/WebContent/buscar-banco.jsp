@@ -58,7 +58,7 @@
 	</div>
 	
 
-<table class="table table-striped">
+<table class="table table-striped table-bordered">
 	<thead>
 		<tr>
 			<th>Nome</th>
@@ -115,6 +115,7 @@
 			 //out.println(rs.getString(4));
 	%>
 	</tbody>
+	
 </table>
 </body>
 <%
