@@ -1,2 +1,3 @@
 09/04 - Iniciado MER com as estruturas que desejamos construir.
-13/04 -  Definida as tabelas base para o projeto
+13/04 - Definida as tabelas base para o projeto
+08/06 - Alterações nas tabelas necessarias para contemplatar a regra de  negocio.
