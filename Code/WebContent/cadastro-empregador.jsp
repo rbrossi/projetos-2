@@ -49,19 +49,47 @@
 						<input type="date" class="form-control" id="nascimento"
 							name="dataNascimento" placeholder="Data de nascimento" required>
 					</div>
-					<div class="form-group">
-						<input type="text" class="form-control " id="cidade" name="cidade"
-							placeholder="Cidade" required>
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control " id="endereco"
-							name="endereco" placeholder="Endereço" required>
-					</div>
-
+					
 					<div class="form-group">
 						<input type="text" class="form-control" id="telefone"
 							name="telefone" placeholder="Telefone" required>
 					</div>
+					
+					<label>Logradouro</label>
+
+					<div class="form-group">
+						<input type="text" class="form-control " id="estado"
+							name="estado" placeholder="Estado" required>
+					</div>
+					
+					<div class="form-group">
+						<input type="text" class="form-control " id="cidade" name="cidade"
+							placeholder="Cidade" required>
+					</div>
+					
+					<div class="form-group">
+						<input type="text" class="form-control " id="bairro" name="bairro"
+							placeholder="Bairro" required>
+					</div>
+					
+					
+					<div class="form-group">
+						<input type="text" class="form-control " id="rua" name="rua"
+							placeholder="Rua" required>
+					</div>
+					
+					
+					<div class="form-group">
+						<input type="text" class="form-control " id="numero" name="numero"
+							placeholder="Numero" required>
+					</div>
+					
+					<div class="form-group">
+						<input type="text" class="form-control " id="complemento"
+							name="complemento" placeholder="Complemento" required>
+					</div>
+
+
 
 
 
