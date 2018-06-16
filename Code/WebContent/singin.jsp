@@ -11,31 +11,7 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
-		class="navbar-brand" href="index.jsp">Limpai!</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-		data-target="#navbarSupportedContent"
-		aria-controls="navbarSupportedContent" aria-expanded="false"
-		aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link" href="search.jsp">Buscar diaristas<span class="sr-only">(current)</span>
-			</a></li>
-		</ul>
-		<ul1 class="navbar-nav my-sm-0">
-		<li class="nav-link"><a class="nav-link" href="singin.jsp">Sign	In<span class="sr-only">(current)</span>
-		</a></li>
-		<li class="nav-link"><a class="btn btn-outline-success nav-link"
-			href="login.jsp">Login<span class="sr-only">(current)</span></a></li>
-		</ul1>
-
-	</div>
-	</nav>
-
-
+	<%@include file="cabecalho.jsp"%>
 
 	<div class="container">
 		<div class="row">
@@ -43,7 +19,7 @@
 				<div class="contract-wall">
 					<img class="profile-img" src="images/empregador.png" alt="">
 					<h1 class="text-center login-title">Sou empregador</h1>
-					<form class="form-signin" method="post" action="cadastroEmpregador.jsp">
+					<form class="form-signin" method="post" action="cadastro-empregador.jsp">
 						<button class="btn btn-lg btn-primary btn-block" type="submit">
 							Quero contratar</button>
 					</form>
@@ -53,7 +29,7 @@
 				<div class="work-wall">
 					<img class="profile-img" src="images/domestica.png" alt="">
 					<h1 class="text-center login-title">Sou domestica(o)</h1>
-					<form class="form-signin" method="post" action="cadastroDiarista.jsp">
+					<form class="form-signin" method="post" action="cadastro-diarista.jsp">
 						<button class="btn btn-lg btn-primary btn-block" type="submit">
 							Quero trabalhar</button>
 					</form>

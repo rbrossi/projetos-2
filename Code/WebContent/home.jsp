@@ -23,7 +23,7 @@
 
 		</ul>
 		<ul1 class="navbar-nav my-sm-0">
-		<li class="nav-link"><a class="nav-link" href="index.jsp">Logoff<span
+		<li class="nav-link"><a class="nav-link" href="index.jsp">Sair<span
 				class="sr-only">(current)</span></a></li>
 		</ul1>
 		<!--   <form class="form-inline my-2 my-lg-0">

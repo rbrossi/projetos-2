@@ -8,7 +8,6 @@
 
 	String emaile = null;
 	String senhae = null;
-
 	try {
 		Connection con = ConectaBD.getConnection();
 		String query = "select email, senha from usuarios";
@@ -21,13 +20,14 @@
 			senhae = rs.getString(2);//mostra o campo 3 da tabela
 
 			if (emaile.equals(email) && senhae.equals(senha)) {
-
 				response.sendRedirect("home.jsp");
 				con.close();
 			}
 		}
-
-		response.sendRedirect("falha.jsp");
+		response.sendRedirect("login.jsp?erro=1");
+	
+		
+		
 
 		//fecha a conexao com o banco
 		con.close();
