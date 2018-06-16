@@ -20,7 +20,8 @@
 	int numero = Integer.parseInt(request.getParameter("numero"));
 	String complemento = request.getParameter("complemento");
 	String servico = request.getParameter("servico");
-	String idPessoa = "null";
+	int idPessoa = 0 ;
+	int idDomestico = 0;
 	try {
 		
 		// Pessoa
@@ -46,9 +47,9 @@
 		Connection conGetIDPessoa = ConectaBD.getConnection();
 		String queryGetIDPessoa = "select idpessoa FROM pessoa where email=" +"'" + email + "'";
 		PreparedStatement stmtGetIDPessoa = conGetIDPessoa.prepareStatement(queryGetIDPessoa);
-		ResultSet rs = stmtGetIDPessoa.executeQuery(queryGetIDPessoa);
-		while (rs.next()) {
-			idPessoa = rs.getString(1);	
+		ResultSet rsGetIDPessoa = stmtGetIDPessoa.executeQuery(queryGetIDPessoa);
+		while (rsGetIDPessoa.next()) {
+			idPessoa = Integer.parseInt(rsGetIDPessoa.getString(1)) ;	
 		}
 
 		conGetIDPessoa.close();
@@ -59,7 +60,7 @@
 		PreparedStatement stmtDomestico = conDomestico.prepareStatement(queryDomestico);
 		stmtDomestico.setString(1, null);
 		stmtDomestico.setFloat(2, valor);
-		stmtDomestico.setString(3, idPessoa);
+		stmtDomestico.setInt(3, idPessoa);
 		stmtDomestico.execute();
 		stmtDomestico.close();
 		conDomestico.close();
@@ -77,10 +78,37 @@
 		stmtLogradouro.setString(5, rua);
 		stmtLogradouro.setInt(6, numero);
 		stmtLogradouro.setString(7, complemento);
-		stmtLogradouro.setString(8, idPessoa);
+		stmtLogradouro.setInt(8, idPessoa);
 		stmtLogradouro.execute();
 		stmtLogradouro.close();
 		conLogradouro.close();
+		
+	
+		//INSERT INTO `mysqlpor_limpai_db`.`servicos` (`servico`, `descricao`, `domestico_iddomestico`, `domestico_pessoa_idpessoa`) VALUES ('teste', 'teste', '11', '10');
+		
+		Connection conGetIDDomestico = ConectaBD.getConnection();
+		String queryGetIDDomestico = "select iddomestico FROM domestico where pessoa_idpessoa=" +"'" + idPessoa + "'";
+		PreparedStatement stmtGetIDDomestico = conGetIDDomestico.prepareStatement(queryGetIDDomestico);
+		ResultSet rsGetIDDomestico  = stmtGetIDDomestico.executeQuery(queryGetIDDomestico);
+		while (rsGetIDDomestico .next()) {
+			idDomestico = Integer.parseInt(rsGetIDDomestico .getString(1));	
+		}
+
+		conGetIDPessoa.close();
+
+
+		Connection conServico = ConectaBD.getConnection();	
+		String queryServico = "insert into servicos values (?, ?, ?, ?, ?)";
+		PreparedStatement stmtServico = conServico.prepareStatement(queryServico);
+		stmtServico.setString(1, null);
+		stmtServico.setString(2, servico);
+		stmtServico.setString(3, servico);
+		stmtServico.setInt(4, idDomestico);
+		stmtServico.setInt(5, idPessoa);
+		stmtServico.execute();
+		stmtServico.close();
+		conServico.close();
+
 		
 
 	} catch (Exception e) {

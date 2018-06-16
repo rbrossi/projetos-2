@@ -83,7 +83,12 @@
 	
 		try {
 			Connection con = ConectaBD.getConnection();
-			String query = "select nome, cidade, telefone, servico, valor from usuarios where cidade = '" + cidade + "' and isEmpregador = 'false'";
+
+			String query = "select p.nome, l.cidade, p.telefone, s.servico, d.val_diaria from pessoa  p, domestico d, logradouro l, servicos s where p.idpessoa=d.pessoa_idpessoa and p.idpessoa=l.pessoa_idpessoa and p.idpessoa=s.domestico_pessoa_idpessoa and l.cidade=" + "'" + cidade + "' ";
+			
+
+
+
 			PreparedStatement stmt = con.prepareStatement(query);
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
