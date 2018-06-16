@@ -23,28 +23,16 @@
 		<ul class="navbar-nav mr-auto">
 		</ul>
 		<ul1 class="navbar-nav my-sm-0">
-		
 	</div>
 	</nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <h1>Pesquise por cidade!</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-3">
-            <form action="" class="search-form">
-                <div class="form-group has-feedback">
-            		<label for="search" class="sr-only">Digite a cidade</label>
-            		<input type="text" class="form-control" name="search" id="search" placeholder="search">
-              		<span class="glyphicon glyphicon-search form-control-feedback"></span>
-            	</div>
-            </form>
-        </div>
-    </div>
-</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h1>Agenda semanal</h1>
+			</div>
+		</div>
+	</div>
 
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -55,7 +43,25 @@
 
 
 			<div class="col-md-12">
-				<h4>Nome da cidade</h4>
+				<h4>
+					<script language=javascript type="text/javascript">
+						dayName = new Array("domingo", "segunda", "terça",
+								"quarta", "quinta", "sexta", "sábado")
+						monName = new Array("janeiro", "fevereiro", "março",
+								"abril", "maio", "junho", "agosto", "outubro",
+								"novembro", "dezembro")
+						now = new Date
+					</script>
+					</head>
+					<body>
+						<script language=javascript type="text/javascript">
+							document.write("Hoje é "
+									+ dayName[now.getDay()] + ", "
+									+ now.getDate() + " de "
+									+ monName[now.getMonth()] + " de "
+									+ now.getFullYear() + ".")
+						</script>
+				</h4>
 				<div class="table-responsive">
 
 
@@ -64,11 +70,10 @@
 						<thead>
 
 							<th><input type="checkbox" id="checkall" /></th>
-							<th>Nome</th>
-							<th>Email</th>
+							<th>Cliente</th>
+							<th>Telefone</th>
 							<th>Endereco</th>
 							<th>Contato</th>
-							<th>Valor</th>
 
 						</thead>
 						<tbody>
