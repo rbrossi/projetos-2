@@ -85,7 +85,7 @@
 					</div>					
 					<label>Quais serviços você oferece?</label>
                     <div class="form-group">
-                    <textarea class="form-control" type="textarea" id="servicos" placeholder="Insira aqui os serviços que você oferece." maxlength="140" rows="7" name="servico"></textarea>                   
+                    <textarea class="form-control" type="textarea" id="servico" placeholder="Insira aqui os serviços que você oferece." maxlength="140" rows="7" name="servico"></textarea>                   
                     </div>
 
         
