@@ -40,6 +40,8 @@
 				response.sendRedirect("diarista-dashboard.jsp");
 
 		}
+		
+// 		teste
 
 		response.sendRedirect("login.jsp?erro=1");
 
