@@ -68,60 +68,25 @@
 					<table id="mytable" class="table table-bordred table-striped">
 
 						<thead>
-
-							<th><input type="checkbox" id="checkall" /></th>
+							
 							<th>Cliente</th>
 							<th>Telefone</th>
 							<th>Endereco</th>
-							<th>Contato</th>
+							<th>Data</th>
+							<th>Hora</th>
 
 						</thead>
 						<tbody>
 
 							<tr>
-								<td><input type="checkbox" class="checkthis" /></td>
-								<td>Mohsin</td>
-								<td>isometric.mohsin@gmail.com</td>
-								<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-								<td>+923335586757</td>
-								<td>R$ 1000</td>
+								<td>Julio</td>
+								<td>(47) 3385-1880</td>
+								<td>Av. Nereu Ramos, 100</td>
+								<td>Quarta-feira</td>
+								<td>08:00 - 10:00</td>
 							</tr>
 
-							<tr>
-								<td><input type="checkbox" class="checkthis" /></td>
-								<td>Mohsin</td>
-								<td>isometric.mohsin@gmail.com</td>
-								<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-								<td>+923335586757</td>
-								<td>R$ 1000</td>
-							</tr>
-
-							<tr>
-								<td><input type="checkbox" class="checkthis" /></td>
-								<td>Mohsin</td>
-								<td>isometric.mohsin@gmail.com</td>
-								<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-								<td>+923335586757</td>
-								<td>R$ 1000</td>
-							</tr>
-
-							<tr>
-								<td><input type="checkbox" class="checkthis" /></td>
-								<td>Mohsin</td>
-								<td>isometric.mohsin@gmail.com</td>
-								<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-								<td>+923335586757</td>
-								<td>R$ 1000</td>
-							</tr>
-
-							<tr>
-								<td><input type="checkbox" class="checkthis" /></td>
-								<td>Mohsin</td>
-								<td>isometric.mohsin@gmail.com</td>
-								<td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-								<td>+923335586757</td>
-								<td>R$ 1000</td>
-							</tr>
+						
 						</tbody>
 					</table>
 				</div>
