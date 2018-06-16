@@ -11,32 +11,55 @@
 	String senha = request.getParameter("senha");
 	String cpf = request.getParameter("cpf");
 	String dataNascimento = request.getParameter("dataNascimento");
+	String telefone = request.getParameter("telefone");
 	String cidade = request.getParameter("cidade");
 	String endereco = request.getParameter("endereco");
-	String telefone = request.getParameter("telefone");
+	Float valor = Float.parseFloat(request.getParameter("valor"));	
 	String servico = request.getParameter("servico");
-	String valor = request.getParameter("valor");
-	String isEmpregador = "false";	
+	String idPessoa = "null";
 	try {
 		
-		Connection con = ConectaBD.getConnection();
-		String query = "insert into usuarios values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";		
-		PreparedStatement stmt = con.prepareStatement(query);
-		stmt.setString(1, null);
-		stmt.setString(2, nome);
-		stmt.setString(3, email);
-		stmt.setString(4, senha);
-		stmt.setString(5, cpf);
-		stmt.setString(6, dataNascimento);
-		stmt.setString(7, cidade);
-		stmt.setString(8, endereco);
-		stmt.setString(9, telefone);
-		stmt.setString(10, servico);
-		stmt.setString(11, valor);
-		stmt.setString(12	, isEmpregador);
-		stmt.execute();
-		stmt.close();
-		con.close();
+		// Pessoa
+		//	INSERT INTO `mysqlpor_limpai_db`.`pessoa` (`nome`, `email`, `senha`, `cpf`, `nascimento`, `telefone`) VALUES ('Rafael', 'rafael-rossi@hotmail.com', '123', '09851829978', '02/07/1995', '47 988729216');
+
+		Connection conPessoa = ConectaBD.getConnection();	
+		String queryPessoa = "insert into pessoa values (?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement stmtPessoa = conPessoa.prepareStatement(queryPessoa);
+		stmtPessoa.setString(1, null);
+		stmtPessoa.setString(2, nome);
+		stmtPessoa.setString(3, email);
+		stmtPessoa.setString(4, senha);
+		stmtPessoa.setString(5, cpf);
+		stmtPessoa.setString(6, dataNascimento);
+		stmtPessoa.setString(7, telefone);
+		stmtPessoa.execute();
+		stmtPessoa.close();
+		conPessoa.close();
+
+		//Domestico
+		//	INSERT INTO `mysqlpor_limpai_db`.`domestico` (`val_diaria`, `pessoa_idpessoa`) VALUES ('100', '2');
+		
+		Connection conGetIDPessoa = ConectaBD.getConnection();
+		String queryGetIDPessoa = "select idpessoa FROM pessoa where email=" +"'" + email + "'";
+		PreparedStatement stmtGetIDPessoa = conGetIDPessoa.prepareStatement(queryGetIDPessoa);
+		ResultSet rs = stmtGetIDPessoa.executeQuery(queryGetIDPessoa);
+		while (rs.next()) {
+			idPessoa = rs.getString(1);	
+		}
+
+		conGetIDPessoa.close();
+
+
+		Connection conDomestico = ConectaBD.getConnection();	
+		String queryDomestico = "insert into domestico values (?, ?, ?)";
+		PreparedStatement stmtDomestico = conDomestico.prepareStatement(queryDomestico);
+		stmtDomestico.setString(1, null);
+		stmtDomestico.setFloat(2, valor);
+		stmtDomestico.setString(3, idPessoa);
+		stmtDomestico.execute();
+		stmtDomestico.close();
+		conDomestico.close();
+		
 
 	} catch (Exception e) {
 		out.print(e);
