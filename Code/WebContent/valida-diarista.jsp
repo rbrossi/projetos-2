@@ -12,9 +12,13 @@
 	String cpf = request.getParameter("cpf");
 	String dataNascimento = request.getParameter("dataNascimento");
 	String telefone = request.getParameter("telefone");
-	String cidade = request.getParameter("cidade");
-	String endereco = request.getParameter("endereco");
 	Float valor = Float.parseFloat(request.getParameter("valor"));	
+	String estado = request.getParameter("estado");
+	String cidade = request.getParameter("cidade");
+	String bairro = request.getParameter("bairro");
+	String rua = request.getParameter("rua");
+	int numero = Integer.parseInt(request.getParameter("numero"));
+	String complemento = request.getParameter("complemento");
 	String servico = request.getParameter("servico");
 	String idPessoa = "null";
 	try {
@@ -59,6 +63,24 @@
 		stmtDomestico.execute();
 		stmtDomestico.close();
 		conDomestico.close();
+		
+		//Logradouro
+		//  INSERT INTO `mysqlpor_limpai_db`.`logradouro` (`estado`, `cidade`, `bairro`, `rua`, `numero`, `complemento`, `pessoa_idpessoa`) VALUES ('sc', 'pomerode', 'centro', 'teste', '145', 'casa', (SELECT idpessoa FROM mysqlpor_limpai_db.pessoa where email="douglas-portuga@hotmail.com"));
+		
+		Connection conLogradouro = ConectaBD.getConnection();	
+		String queryLogradouro = "insert into logradouro values (?, ?, ?, ?, ?, ?, ?, ?)";
+		PreparedStatement stmtLogradouro = conLogradouro.prepareStatement(queryLogradouro);
+		stmtLogradouro.setString(1, null);
+		stmtLogradouro.setString(2, estado);
+		stmtLogradouro.setString(3, cidade);
+		stmtLogradouro.setString(4, bairro);
+		stmtLogradouro.setString(5, rua);
+		stmtLogradouro.setInt(6, numero);
+		stmtLogradouro.setString(7, complemento);
+		stmtLogradouro.setString(8, idPessoa);
+		stmtLogradouro.execute();
+		stmtLogradouro.close();
+		conLogradouro.close();
 		
 
 	} catch (Exception e) {
