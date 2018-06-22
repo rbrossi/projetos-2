@@ -1,6 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/validarUsuario.jsp"%>
+<%@page language="java" import="database.ConectaBD"%>
+<%@page language="java" import="java.sql.*"%>
+<%
+String nome = null;
+String email = request.getSession().getAttribute("user").toString();
+Connection conGetNome = ConectaBD.getConnection();
+String queryGetNome = "select nome FROM pessoa where email=" + "'" + email + "'";
+PreparedStatement stmtGetNome = conGetNome.prepareStatement(queryGetNome);
+ResultSet rsGetNome = stmtGetNome.executeQuery(queryGetNome);
+while (rsGetNome.next()) {
+	nome = rsGetNome.getString(1);
+}
+conGetNome.close();
+
+
+%>
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -21,8 +40,11 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-		</ul>
+		</ul>		
 		<ul1 class="navbar-nav my-sm-0">
+      		<li class="nav-link">
+        		<a class="nav-link" href="logout.jsp">Sair<span class="sr-only">(current)</span></a>
+      		</li>    		
 		
 	</div>
 	</nav>
@@ -30,7 +52,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1>Pesquise por cidade!</h1>
+            <h1>Bem vindo <%out.print(nome);%></h1>
         </div>
     </div>
     <div class="row">

@@ -7,53 +7,50 @@
 	String email = request.getParameter("email");
 	String senha = request.getParameter("senha");
 	int idDomestico = 0;
-	int idPessoa = 0 ;
+	int idPessoa = 0;
 	boolean isDomestica = false;
 	String emaile = null;
 	String senhae = null;
-		
+
 	try {
 
 		Connection conGetIDPessoa = ConectaBD.getConnection();
-		String queryGetIDPessoa = "select idpessoa FROM pessoa where email=" +"'" + email + "'";
+		String queryGetIDPessoa = "select idpessoa FROM pessoa where email=" + "'" + email + "'";
 		PreparedStatement stmtGetIDPessoa = conGetIDPessoa.prepareStatement(queryGetIDPessoa);
 		ResultSet rsGetIDPessoa = stmtGetIDPessoa.executeQuery(queryGetIDPessoa);
 		while (rsGetIDPessoa.next()) {
-			idPessoa = Integer.parseInt(rsGetIDPessoa.getString(1)) ;	
+			idPessoa = Integer.parseInt(rsGetIDPessoa.getString(1));
 		}
 		conGetIDPessoa.close();
-		
-		
+
 		Connection conGetIDDomestico = ConectaBD.getConnection();
-		String queryGetIDDomestico = "select iddomestico FROM domestico where pessoa_idpessoa=" +"'" + idPessoa + "'";
+		String queryGetIDDomestico = "select iddomestico FROM domestico where pessoa_idpessoa=" + "'" + idPessoa
+				+ "'";
 		PreparedStatement stmtGetIDDomestico = conGetIDDomestico.prepareStatement(queryGetIDDomestico);
-		ResultSet rsGetIDDomestico  = stmtGetIDDomestico.executeQuery(queryGetIDDomestico);
+		ResultSet rsGetIDDomestico = stmtGetIDDomestico.executeQuery(queryGetIDDomestico);
 		while (rsGetIDDomestico.next()) {
-			idDomestico = Integer.parseInt(rsGetIDDomestico .getString(1));	
+			idDomestico = Integer.parseInt(rsGetIDDomestico.getString(1));
 		}
 		conGetIDPessoa.close();
-	
-		if (idDomestico > 0){
-			
+
+		if (idDomestico > 0) {
+
 			isDomestica = true;
-			
+
 		} else {
-			
+
 			isDomestica = false;
-			
+
 		}
-		
-		
+
 	} catch (Exception e) {
 		out.println(e.toString());
 	}
-	
 
 	try {
-		
 
 		Connection conGetSenha = ConectaBD.getConnection();
-		String queryGetSenha = "select email, senha FROM pessoa where email=" +"'" + email + "'";
+		String queryGetSenha = "select email, senha FROM pessoa where email=" + "'" + email + "'";
 		PreparedStatement stmtGetSenha = conGetSenha.prepareStatement(queryGetSenha);
 		ResultSet rsGetSenha = stmtGetSenha.executeQuery(queryGetSenha);
 		while (rsGetSenha.next()) {
@@ -62,15 +59,19 @@
 		}
 		conGetSenha.close();
 
-		if (email.equals(emaile) && senha.equals(senhae)){
-			if (isDomestica){
+		if (email.equals(emaile) && senha.equals(senhae)) {
+			if (isDomestica) {
+				session.setAttribute("user", email); //controle de sessão
 				response.sendRedirect("diarista-dashboard.jsp");
-		}else
-			response.sendRedirect("empregador-dashboard.jsp");
-		}else 
+			} else {
+				session.setAttribute("user", email); //controle de sessão
+				response.sendRedirect("empregador-dashboard.jsp");
+// 				System.out.print(session.getAttribute("user"));
+			}
+
+		} else
 			response.sendRedirect("login.jsp?erro=1");
 
-		
 	} catch (Exception e) {
 		out.println(e.toString());
 	}

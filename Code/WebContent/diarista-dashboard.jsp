@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/validarUsuario.jsp"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -23,6 +25,9 @@
 		<ul class="navbar-nav mr-auto">
 		</ul>
 		<ul1 class="navbar-nav my-sm-0">
+      		<li class="nav-link">
+        		<a class="nav-link" href="logout.jsp">Sair<span class="sr-only">(current)</span></a>
+      		</li>    		
 	</div>
 	</nav>
 
