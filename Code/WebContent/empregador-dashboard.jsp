@@ -30,7 +30,7 @@ conGetNome.close();
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
-		class="navbar-brand" href="index.jsp">Limpai!</a>
+		class="navbar-brand" href="empregador-dashboard.jsp">Limpai!</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
 		aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -52,7 +52,7 @@ conGetNome.close();
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1>Bem vindo <%out.print(nome);%></h1>
+            <h1>Olá <%out.print(nome);%>!</h1>
         </div>
     </div>
     <div class="row">

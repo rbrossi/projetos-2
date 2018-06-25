@@ -2,6 +2,24 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/validarUsuario.jsp"%>
+<%@page language="java" import="database.ConectaBD"%>
+<%@page language="java" import="java.sql.*"%>
+
+<%
+String nome = null;
+String email = request.getSession().getAttribute("user").toString();
+Connection conGetNome = ConectaBD.getConnection();
+String queryGetNome = "select nome FROM pessoa where email=" + "'" + email + "'";
+PreparedStatement stmtGetNome = conGetNome.prepareStatement(queryGetNome);
+ResultSet rsGetNome = stmtGetNome.executeQuery(queryGetNome);
+while (rsGetNome.next()) {
+	nome = rsGetNome.getString(1);
+}
+conGetNome.close();
+
+
+%>
+
 
 <html>
 <head>
@@ -13,7 +31,7 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
-		class="navbar-brand" href="index.jsp">Limpai!</a>
+		class="navbar-brand" href="diarista-dashboard.jsp">Limpai!</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
 		aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -34,7 +52,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<h1>Agenda semanal</h1>
+				<h1>Olá <%out.print(nome);%>!</h1>
 			</div>
 		</div>
 	</div>
