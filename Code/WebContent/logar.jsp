@@ -62,11 +62,14 @@
 		if (email.equals(emaile) && senha.equals(senhae)) {
 			if (isDomestica) {
 				session.setAttribute("user", email); //controle de sessão
+				session.setAttribute("isDomestica", isDomestica);
 				response.sendRedirect("diarista-dashboard.jsp");
 			} else {
 				session.setAttribute("user", email); //controle de sessão
+				session.setAttribute("isDomestica", isDomestica);
 				response.sendRedirect("empregador-dashboard.jsp");
-// 				System.out.print(session.getAttribute("user"));
+
+				// 				System.out.print(session.getAttribute("user"));
 			}
 
 		} else

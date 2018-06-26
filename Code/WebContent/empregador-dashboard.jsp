@@ -7,6 +7,7 @@
 <%
 String nome = null;
 String email = request.getSession().getAttribute("user").toString();
+String isDomestica = request.getSession().getAttribute("isDomestica").toString();
 Connection conGetNome = ConectaBD.getConnection();
 String queryGetNome = "select nome FROM pessoa where email=" + "'" + email + "'";
 PreparedStatement stmtGetNome = conGetNome.prepareStatement(queryGetNome);
@@ -16,6 +17,9 @@ while (rsGetNome.next()) {
 }
 conGetNome.close();
 
+if (isDomestica.equals("true")){
+	response.sendRedirect("diarista-dashboard.jsp");
+}
 
 %>
 
