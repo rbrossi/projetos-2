@@ -8,19 +8,14 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
-<%
+	
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/cadastro-diarista.js"></script>
+	<link rel="stylesheet" type="text/css"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-/*
 
-
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-<script src="js/jquery-3.3.1.js"></script>
-<script src="js/cadastro-diarista.js"></script>
-<link rel="stylesheet" type="text/css"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-*/
-
-%>
 
 </head>
 <body>
@@ -113,9 +108,7 @@
 
 
 
-					<div class="form-group">
-
-						<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="form-group">
 							<div class="input-group control-group after-add-more">
 								<input type="text" name="addmore[]" id="ContactNo"
 									class="form-control" placeholder="Serviços que você oferece">
@@ -139,15 +132,8 @@
 								</div>
 							</div>
 						</div>
-					</div>
-
-
-
-					<div class="form-group ">
-						<textarea class="form-control" type="textarea" id="servico"
-							placeholder="Insira aqui os serviços que você oferece."
-							maxlength="140" rows="7" name="servico"></textarea>
-					</div>
+			
+			
 
 
 					<button class="btn  btn-primary pull-right" type="submit">Cadastrar</button>
