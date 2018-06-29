@@ -122,8 +122,10 @@
 
 						<div class="form-group">
 							<div class="input-group control-group after-add-more">
-								<input type="text" name="addmore[]" id="ContactNo"
-									class="form-control" placeholder="Serviços que você oferece">
+								<input type="text" name="servico[]" id="servico"
+									class="form-control" placeholder="Serviço que você oferece">
+								<input type="text" name="descricao[]" id="descricao"
+									class="form-control" placeholder="Descrição do serviço que você oferece">
 								<div class="input-group-btn">
 									<button class="btn btn-success add-more" type="button">
 										<i class="glyphicon glyphicon-plus"></i>
@@ -135,8 +137,10 @@
 
 						<div class="copy hide">
 							<div class="control-group input-group" style="margin-top: 10px">
-								<input type="text" name="addmore[]" class="form-control"
+								<input type="text" name="servico[]" class="form-control"
 									placeholder="Serviços que você oferece">
+								<input type="text" name="descricao[]" id="descricao"
+									class="form-control" placeholder="Descrição do serviço que você oferece">
 								<div class="input-group-btn">
 									<button class="btn btn-danger remove" type="button">
 										<i class="glyphicon glyphicon-remove"></i>
