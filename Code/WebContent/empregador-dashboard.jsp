@@ -1,6 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/validarUsuario.jsp"%>
+<%@page language="java" import="database.ConectaBD"%>
+<%@page language="java" import="java.sql.*"%>
+<%
+String nome = null;
+String email = request.getSession().getAttribute("user").toString();
+String isDomestica = request.getSession().getAttribute("isDomestica").toString();
+Connection conGetNome = ConectaBD.getConnection();
+String queryGetNome = "select nome FROM pessoa where email=" + "'" + email + "'";
+PreparedStatement stmtGetNome = conGetNome.prepareStatement(queryGetNome);
+ResultSet rsGetNome = stmtGetNome.executeQuery(queryGetNome);
+while (rsGetNome.next()) {
+	nome = rsGetNome.getString(1);
+}
+conGetNome.close();
+
+if (isDomestica.equals("true")){
+	response.sendRedirect("diarista-dashboard.jsp");
+}
+
+%>
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -11,7 +34,7 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"> <a
-		class="navbar-brand" href="index.jsp">Limpai!</a>
+		class="navbar-brand" href="empregador-dashboard.jsp">Limpai!</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
 		aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -21,8 +44,11 @@
 
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-		</ul>
+		</ul>		
 		<ul1 class="navbar-nav my-sm-0">
+      		<li class="nav-link">
+        		<a class="nav-link" href="logout.jsp">Sair<span class="sr-only">(current)</span></a>
+      		</li>    		
 		
 	</div>
 	</nav>
@@ -30,7 +56,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1>Pesquise por cidade!</h1>
+            <h1>Olá <%out.print(nome);%>!</h1>
         </div>
     </div>
     <div class="row">
