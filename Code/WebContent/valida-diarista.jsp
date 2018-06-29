@@ -19,7 +19,11 @@
 	String rua = request.getParameter("rua");
 	int numero = Integer.parseInt(request.getParameter("numero"));
 	String complemento = request.getParameter("complemento");
-	String servico = request.getParameter("servico");
+	//String servico = request.getParameter("servico");
+	String servico = request.getParameter("servico[]");
+	String descricao = request.getParameter("descricao[]");
+	
+	
 	int idPessoa = 0 ;
 	int idDomestico = 0;
 	try {
@@ -102,7 +106,7 @@
 		PreparedStatement stmtServico = conServico.prepareStatement(queryServico);
 		stmtServico.setString(1, null);
 		stmtServico.setString(2, servico);
-		stmtServico.setString(3, servico);
+		stmtServico.setString(3, descricao);
 		stmtServico.setInt(4, idDomestico);
 		stmtServico.setInt(5, idPessoa);
 		stmtServico.execute();
