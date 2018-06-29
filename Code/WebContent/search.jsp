@@ -21,11 +21,8 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 		</ul>
-		<ul1 class="navbar-nav my-sm-0">
-		<li class="nav-link"><a class="nav-link" href="singin.jsp">Cadastrar<span
-				class="sr-only">(current)</span>
-		</a></li>
-		<li class="nav-link"><a class="nav-link" href="login.jsp">Login<span
+		<ul1 class="navbar-nav my-sm-0">		
+		<li class="nav-link"><a class="nav-link" href="empregador-dashboard.jsp">Meu perfil<span
 				class="sr-only">(current)</span></a></li>
 		</ul1>
 		</div>		
