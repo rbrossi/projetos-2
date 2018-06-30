@@ -7,20 +7,28 @@
 
 <%
 String nome = null;
+String idPessoa = null;
 String email = request.getSession().getAttribute("user").toString();
 String isDomestica = request.getSession().getAttribute("isDomestica").toString();
 Connection conGetNome = ConectaBD.getConnection();
-String queryGetNome = "select nome FROM pessoa where email=" + "'" + email + "'";
+String queryGetNome = "select nome, idPessoa FROM pessoa where email=" + "'" + email + "'";
 PreparedStatement stmtGetNome = conGetNome.prepareStatement(queryGetNome);
 ResultSet rsGetNome = stmtGetNome.executeQuery(queryGetNome);
 while (rsGetNome.next()) {
 	nome = rsGetNome.getString(1);
+	idPessoa = rsGetNome.getString(2);
 }
 conGetNome.close();
 
 if (isDomestica.equals("false")){
 	response.sendRedirect("empregador-dashboard.jsp");
 }
+
+
+//select empregador_pessoa_idpessoa from contratacao where domestico_iddomestico = 10
+
+
+
 
 %>
 
@@ -92,30 +100,56 @@ if (isDomestica.equals("false")){
 				<div class="table-responsive">
 
 
-					<table id="mytable" class="table table-bordred table-striped">
+					<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Cidade</th>
+				<th>Telefone</th>
+				<th>Serviço</th>
+				<th>Valor</th>
+				<th></th>
+			</tr>
+		</thead>
 
-						<thead>
-							
-							<th>Cliente</th>
-							<th>Telefone</th>
-							<th>Endereco</th>
-							<th>Data</th>
-							<th>Hora</th>
+		<%
+			try {
+				Connection con = ConectaBD.getConnection();
+				// RAFAEL ---> AJUSTAR PARA RETORNAR OS CLIENTES DA DIARISTA
+				String query = "select p.nome, l.cidade, p.telefone, s.descricao, d.val_diaria from pessoa  p, domestico d, logradouro l, servicos s where domestico_iddomestico="
+						+ "'" + idDomestico + "' ";
 
-						</thead>
-						<tbody>
+				PreparedStatement stmt = con.prepareStatement(query);
+				ResultSet rs = stmt.executeQuery(query);
+				while (rs.next()) {
+		%>
 
-							<tr>
-								<td>Julio</td>
-								<td>(47) 3385-1880</td>
-								<td>Av. Nereu Ramos, 100</td>
-								<td>Quarta-feira</td>
-								<td>08:00 - 10:00</td>
-							</tr>
-
-						
-						</tbody>
-					</table>
+		<tr>
+			<td id="teste">
+				<%
+					out.println(rs.getString(1));
+				%>
+			</td>
+			<td>
+				<%
+					out.println(rs.getString(2));
+				%>
+			</td>
+			<td>
+				<%
+					out.println(rs.getString(3));
+				%>
+			</td>
+			<td>
+				<%
+					out.println(rs.getString(4));
+				%>
+			</td>
+			<td>
+				<%
+					out.println(rs.getString(5));
+				%>
+			</td>
 				</div>
 			</div>
 		</div>

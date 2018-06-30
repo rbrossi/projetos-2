@@ -7,9 +7,9 @@
 <title>Limpai</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css"href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 
-	
+
 
 
 
@@ -97,43 +97,36 @@
 					<label>Financeiro</label>
 					<div class="form-group">
 						<input type="text" class="form-control" id="valor-diaria"
-							name="valor" placeholder="Valor da diaria (Ex. R$ 50,00)"
+							name="valor" placeholder="Valor da diária (Ex. R$ 50,00)"
 							required>
 					</div>
 					<label>Quais serviços você oferece?</label>
 
 
-
-						<div class="form-group">
-							<div class="input-group control-group after-add-more">
-								<input type="text" name="servico[]" id="servico"
-									class="form-control" placeholder="Serviços que você oferece, separados por virgulas">
-							</div>
+					<div class="form-group">
+						<div class="input-group control-group after-add-more">
+							<input type="text" name="descricao[]" id="descricao"
+								class="form-control"
+								placeholder="Descrição dos serviços que você oferece">
 						</div>
-						
-						<div class="form-group">
-							<div class="input-group control-group after-add-more">
-								<input type="text" name="descricao[]" id="descricao"
-									class="form-control" placeholder="Descrição dos serviços que você oferece">
-							</div>
-						</div>
+					</div>
 
 
-<!-- 						<div class="copy hide"> -->
-<!-- 							<div class="control-group input-group" style="margin-top: 10px"> -->
-<!-- 								<input type="text" name="servico[]" class="form-control" -->
-<!-- 									placeholder="Serviços que você oferece"> -->
-<!-- 								<input type="text" name="descricao[]" id="descricao" -->
-<!-- 									class="form-control" placeholder="Descrição do serviço que você oferece"> -->
-<!-- 								<div class="input-group-btn"> -->
-<!-- 									<button class="btn btn-danger remove" type="button"> -->
-<!-- 										<i class="glyphicon glyphicon-remove"></i> -->
-<!-- 									</button> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-			
-			
+					<!-- 						<div class="copy hide"> -->
+					<!-- 							<div class="control-group input-group" style="margin-top: 10px"> -->
+					<!-- 								<input type="text" name="servico[]" class="form-control" -->
+					<!-- 									placeholder="Serviços que você oferece"> -->
+					<!-- 								<input type="text" name="descricao[]" id="descricao" -->
+					<!-- 									class="form-control" placeholder="Descrição do serviço que você oferece"> -->
+					<!-- 								<div class="input-group-btn"> -->
+					<!-- 									<button class="btn btn-danger remove" type="button"> -->
+					<!-- 										<i class="glyphicon glyphicon-remove"></i> -->
+					<!-- 									</button> -->
+					<!-- 								</div> -->
+					<!-- 							</div> -->
+					<!-- 						</div> -->
+
+
 
 
 					<button class="btn  btn-primary pull-right" type="submit">Cadastrar</button>

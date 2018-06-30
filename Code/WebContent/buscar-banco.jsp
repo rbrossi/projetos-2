@@ -95,7 +95,7 @@
 			try {
 				Connection con = ConectaBD.getConnection();
 
-				String query = "select p.nome, l.cidade, p.telefone, s.servico, d.val_diaria from pessoa  p, domestico d, logradouro l, servicos s where p.idpessoa=d.pessoa_idpessoa and p.idpessoa=l.pessoa_idpessoa and p.idpessoa=s.domestico_pessoa_idpessoa and l.cidade="
+				String query = "select p.nome, l.cidade, p.telefone, s.descricao, d.val_diaria from pessoa  p, domestico d, logradouro l, servicos s where p.idpessoa=d.pessoa_idpessoa and p.idpessoa=l.pessoa_idpessoa and p.idpessoa=s.domestico_pessoa_idpessoa and l.cidade="
 						+ "'" + cidade + "' ";
 
 				PreparedStatement stmt = con.prepareStatement(query);
@@ -104,7 +104,7 @@
 		%>
 
 		<tr>
-			<td>
+			<td id="teste">
 				<%
 					out.println(rs.getString(1));
 				%>
@@ -146,15 +146,37 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							<div class="modal-body">								
-								VERIFICAR SE HÁ HORÁRIO DISPONÍVEL <br> Se não tiver,
-								apresentar mensagem "não há horários disponíveis" Se tiver,
-								apresentar as opções
+							<form method="post" action="contratar.jsp">
+								<div class="modal-body">
+									Selecione o dia da semana
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="segunda">
+										<label class="form-check-label"> Segunda-feira </label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="terca">
+										<label class="form-check-label"> Terça-feira </label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="quarta">
+										<label class="form-check-label"> Quarta-feira </label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="quinta">
+										<label class="form-check-label"> Quinta-feira </label>
+									</div>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="sexta">
+										<label class="form-check-label"> Sexta-feira </label>
+									</div>
 
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="	">Contratar</button>
-							</div>
+								</div>
+								<div class="modal-footer">
+									<button type="submit">
+										Contratar										
+									</button>
+								</div>
+								</form>
 						</div>
 					</div>
 				</div>

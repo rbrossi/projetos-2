@@ -20,7 +20,6 @@
 	int numero = Integer.parseInt(request.getParameter("numero"));
 	String complemento = request.getParameter("complemento");
 	//String servico = request.getParameter("servico");
-	String servico = request.getParameter("servico[]");
 	String descricao = request.getParameter("descricao[]");
 	
 	
@@ -102,13 +101,12 @@
 
 
 		Connection conServico = ConectaBD.getConnection();	
-		String queryServico = "insert into servicos values (?, ?, ?, ?, ?)";
+		String queryServico = "insert into servicos values (?, ?, ?, ?)";
 		PreparedStatement stmtServico = conServico.prepareStatement(queryServico);
 		stmtServico.setString(1, null);
-		stmtServico.setString(2, servico);
-		stmtServico.setString(3, descricao);
-		stmtServico.setInt(4, idDomestico);
-		stmtServico.setInt(5, idPessoa);
+		stmtServico.setString(2, descricao);
+		stmtServico.setInt(3, idDomestico);
+		stmtServico.setInt(4, idPessoa);
 		stmtServico.execute();
 		stmtServico.close();
 		conServico.close();

@@ -80,7 +80,7 @@
 			<div class="col-md-12">
 				<h4>Diarista contratada</h4>
 				<div class="table-responsive">
-
+<!-- 			AJUSTAR PARA RETORNAR A DIARISTA CONTRATADA -->
 
 					<table id="mytable" class="table table-bordred table-striped">
 

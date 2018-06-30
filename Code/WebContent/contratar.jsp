@@ -1,65 +1,44 @@
+<%@page import="com.sun.javafx.beans.IDProperty"%>
+<%@page import="java.lang.ProcessBuilder.Redirect"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <%@page language="java" import="database.ConectaBD"%>
 <%@page language="java" import="java.sql.*"%>
-<head>
-<title>Contratar Diarista</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<%@include file="/validarUsuario.jsp"%>
 
-</head>
+<%
+String segunda = request.getParameter("segunda");
+String terca = request.getParameter("terca");
+String quarta = request.getParameter("quarta");
+String quinta = request.getParameter("quinta");
+String sexta = request.getParameter("sexta");
+
+String descricao  = "descricao servico";
+String idEmpregador = "1";
+String idDomestico = "1";
+
+try {
+	
+	// Contratação
+	//	INSERT INTO `mysqlpor_limpai_db`.`contratacao`(`idcontratacao`,`descricao_servico`,`empregador_idempregador`,
+			//`empregador_pessoa_idpessoa`,`domestico_iddomestico`,`domestico_pessoa_idpessoa`,`status`)
+			//VALUES(<{idcontratacao: }>,<{descricao_servico: }>,<{empregador_idempregador: }>,<{empregador_pessoa_idpessoa: }>,
+			//<{domestico_iddomestico: }>,<{domestico_pessoa_idpessoa: }>,<{status: }>);
 
 
-<body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="index.jsp">Limpai!</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
+	Connection conContratar = ConectaBD.getConnection();	
+	String queryContratacao = "insert into contratacao values (?, ?, ?, ?, ?, ?, ?)";
+	PreparedStatement stmtContratacao = conContratacao.prepareStatement(queryContratacao);
+	stmtContratacao.setString(1, null);
+	stmtContratacao.setString(2, descricao);
+	stmtContratacao.setString(3, idEmpregador);
+	stmtContratacao.setString(4, null);
+	stmtContratacao.setString(5, idDomestico);
+	stmtContratacao.setString(6, null);
+	stmtContratacao.setString(7, null);
+	stmtContratacao.execute();
+	stmtContratacao.close();
+	conContratacao.close();
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-			</ul>
-			<ul1 class="navbar-nav my-sm-0"> </ul1>
-			<!--   <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
-		</div>
-	</nav>
-
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal"
-		data-target="#exampleModal">Contratar diarista</button>
-
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Contratar diarista</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-				
-				VERIFICAR SE HÁ HORÁRIO DISPONÍVEL <br>
-				Se não tiver, apresentar mensagem "não há horários disponíveis"
-				Se tiver, apresentar as opções
-				
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary">Contratar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
+%>
