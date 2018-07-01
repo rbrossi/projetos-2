@@ -120,7 +120,7 @@ if (isDomestica.equals("false")){
 			try {
 				Connection con = ConectaBD.getConnection();
 
-				String query = "select p.nome, p.telefone, l.rua, l.bairro, l.numero, l.complemento, l.estado, c.descricao_servico, DATE_FORMAT(a.data, '%d/%m/%Y'), TIME_FORMAT(a.hora_inicio, '%h:%i'), TIME_FORMAT(a.hora_fim, '%h:%i'), c.status from pessoa p, domestico d, logradouro l, contratacao c, agenda a where d.pessoa_idpessoa= idpessoa AND d.pessoa_idpessoa=l.pessoa_idpessoa AND d.pessoa_idpessoa=c.domestico_pessoa_idpessoa AND d.pessoa_idpessoa=a.domestico_pessoa_idpessoa AND d.pessoa_idpessoa=" +"'"+ idPessoa +"'";
+				String query = "select p.nome, p.telefone, l.rua, l.bairro, l.numero, l.complemento, l.estado, c.descricao_servico, DATE_FORMAT(a.data, '%d/%m/%Y'), TIME_FORMAT(a.hora_inicio, '%h:%i'), TIME_FORMAT(a.hora_fim, '%h:%i'), c.status from pessoa p, logradouro l, contratacao c, agenda a where c.empregador_pessoa_idpessoa=p.idpessoa AND c.empregador_pessoa_idpessoa=l.idlogradouro AND c.domestico_pessoa_idpessoa=a.domestico_pessoa_idpessoa AND c.domestico_pessoa_idpessoa=" +"'"+ idPessoa +"'";
 
 				PreparedStatement stmt = con.prepareStatement(query);
 				ResultSet rs = stmt.executeQuery(query);
