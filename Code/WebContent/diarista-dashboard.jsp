@@ -107,9 +107,11 @@ if (isDomestica.equals("false")){
 		<thead>
 			<tr>
 				<th>Nome</th>
-				<th>Cidade</th>
 				<th>Telefone</th>
+				<th>Endereço</th>
 				<th>Descrição do serviço</th>
+				<th>Data</th>
+				<th>Horário</th>	
 				<th>Status</th>
 			</tr>
 		</thead>
@@ -118,8 +120,7 @@ if (isDomestica.equals("false")){
 			try {
 				Connection con = ConectaBD.getConnection();
 
-				String query = "select p.nome, l.cidade, p.telefone, s.descricao, d.val_diaria, p.idpessoa, d.iddomestico from pessoa  p, domestico d, logradouro l, servicos s where p.idpessoa=d.pessoa_idpessoa and p.idpessoa=l.pessoa_idpessoa and p.idpessoa=s.domestico_pessoa_idpessoa and l.cidade="
-						+ "'" + "blumenau" + "' ";
+				String query = "select p.nome, p.telefone, l.rua, l.bairro, l.numero, l.complemento, l.estado, c.descricao_servico, DATE_FORMAT(a.data, '%d/%m/%Y'), TIME_FORMAT(a.hora_inicio, '%h:%i'), TIME_FORMAT(a.hora_fim, '%h:%i'), c.status from pessoa p, domestico d, logradouro l, contratacao c, agenda a where d.pessoa_idpessoa= idpessoa AND d.pessoa_idpessoa=l.pessoa_idpessoa AND d.pessoa_idpessoa=c.domestico_pessoa_idpessoa AND d.pessoa_idpessoa=a.domestico_pessoa_idpessoa AND d.pessoa_idpessoa=" +"'"+ idPessoa +"'";
 
 				PreparedStatement stmt = con.prepareStatement(query);
 				ResultSet rs = stmt.executeQuery(query);
@@ -137,19 +138,40 @@ if (isDomestica.equals("false")){
 					out.println(rs.getString(2));
 				%>
 			</td>
+			
 			<td>
 				<%
-					out.println(rs.getString(3));
+					out.println("Rua " + rs.getString(3)+",");
+					out.println("Bairro "+ rs.getString(4)+ ",");
+					out.println("Número " + rs.getString(5)+ ",");
+					out.println("Complemento " + rs.getString(6)+ ",");
+					out.println("- " + rs.getString(7));
 				%>
 			</td>
+			
 			<td>
 				<%
-					out.println(rs.getString(4));
+					out.println(rs.getString(8));
 				%>
 			</td>
+			
 			<td>
 				<%
-					out.println(rs.getString(5));
+					out.println(rs.getString(9));
+				%>
+			</td>
+			
+			<td>
+				<%
+					out.println(rs.getString(10)+ " as ");
+					out.println(rs.getString(11));
+				%>
+			</td>
+			</td>
+			
+			<td>
+				<%
+					out.println(rs.getString(12));
 				%>
 			</td>
 		</tr>
