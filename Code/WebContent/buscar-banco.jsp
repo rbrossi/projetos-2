@@ -95,7 +95,7 @@
 			try {
 				Connection con = ConectaBD.getConnection();
 
-				String query = "select p.idpessoa, d.iddomestico, p.nome, l.cidade, p.telefone, s.descricao, d.val_diaria from pessoa  p, domestico d, logradouro l, servicos s where p.idpessoa=d.pessoa_idpessoa and p.idpessoa=l.pessoa_idpessoa and p.idpessoa=s.domestico_pessoa_idpessoa and l.cidade="
+				String query = "select p.nome, l.cidade, p.telefone, s.descricao, d.val_diaria, p.idpessoa, d.iddomestico from pessoa  p, domestico d, logradouro l, servicos s where p.idpessoa=d.pessoa_idpessoa and p.idpessoa=l.pessoa_idpessoa and p.idpessoa=s.domestico_pessoa_idpessoa and l.cidade="
 						+ "'" + cidade + "' ";
 
 				PreparedStatement stmt = con.prepareStatement(query);
