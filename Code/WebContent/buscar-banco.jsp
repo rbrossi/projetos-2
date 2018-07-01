@@ -95,7 +95,7 @@
 			try {
 				Connection con = ConectaBD.getConnection();
 
-				String query = "select p.nome, l.cidade, p.telefone, s.descricao, d.val_diaria from pessoa  p, domestico d, logradouro l, servicos s where p.idpessoa=d.pessoa_idpessoa and p.idpessoa=l.pessoa_idpessoa and p.idpessoa=s.domestico_pessoa_idpessoa and l.cidade="
+				String query = "select p.idpessoa, d.iddomestico, p.nome, l.cidade, p.telefone, s.descricao, d.val_diaria from pessoa  p, domestico d, logradouro l, servicos s where p.idpessoa=d.pessoa_idpessoa and p.idpessoa=l.pessoa_idpessoa and p.idpessoa=s.domestico_pessoa_idpessoa and l.cidade="
 						+ "'" + cidade + "' ";
 
 				PreparedStatement stmt = con.prepareStatement(query);
@@ -104,7 +104,7 @@
 		%>
 
 		<tr>
-			<td id="teste">
+			<td id="tabelaResultado">
 				<%
 					out.println(rs.getString(1));
 				%>
@@ -131,8 +131,9 @@
 			</td>
 			<td>
 				<!-- Button trigger modal -->
-				<button type="button" class="" data-toggle="modal"
-					data-target="#exampleModal">Contratar diarista</button> <!-- Modal -->
+				<button type="button" class=" btn-success btn-center"
+					data-toggle="modal" data-target="#exampleModal">Contratar
+					diarista</button> <!-- Modal -->
 				<div class="modal fade" id="exampleModal" tabindex="-1"
 					role="dialog" aria-labelledby="exampleModalLabel"
 					aria-hidden="true">
@@ -172,11 +173,9 @@
 
 								</div>
 								<div class="modal-footer">
-									<button type="submit">
-										Contratar										
-									</button>
+									<button type="submit">Contratar</button>
 								</div>
-								</form>
+							</form>
 						</div>
 					</div>
 				</div>

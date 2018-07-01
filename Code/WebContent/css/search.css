@@ -39,10 +39,10 @@
         }
 
 .btn {
-    height: 60px;
-    position: absolute;
-    left: 350px;
-    top: 150px;
-    border-radius:1px;
-    font-size: 18px;
+	height: 60px;
+	position: absolute;
+	left: 350px;
+	top: 150px;
+	border-radius: 1px;
+	font-size: 18px;
 }
