@@ -10,6 +10,8 @@ String nome = null;
 String idPessoa = null;
 String email = request.getSession().getAttribute("user").toString();
 String isDomestica = request.getSession().getAttribute("isDomestica").toString();
+
+
 Connection conGetNome = ConectaBD.getConnection();
 String queryGetNome = "select nome, idPessoa FROM pessoa where email=" + "'" + email + "'";
 PreparedStatement stmtGetNome = conGetNome.prepareStatement(queryGetNome);
@@ -39,6 +41,9 @@ if (isDomestica.equals("false")){
 <title>Dashboard</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/search.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -69,9 +74,7 @@ if (isDomestica.equals("false")){
 		</div>
 	</div>
 
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
 
 	<div class="container">
 		<div class="row">
@@ -106,18 +109,17 @@ if (isDomestica.equals("false")){
 				<th>Nome</th>
 				<th>Cidade</th>
 				<th>Telefone</th>
-				<th>Serviço</th>
-				<th>Valor</th>
-				<th></th>
+				<th>Descrição do serviço</th>
+				<th>Status</th>
 			</tr>
 		</thead>
 
 		<%
 			try {
 				Connection con = ConectaBD.getConnection();
-				// RAFAEL ---> AJUSTAR PARA RETORNAR OS CLIENTES DA DIARISTA
-				String query = "select p.nome, l.cidade, p.telefone, s.descricao, d.val_diaria from pessoa  p, domestico d, logradouro l, servicos s where domestico_iddomestico="
-						+ "'" + idDomestico + "' ";
+
+				String query = "select p.nome, l.cidade, p.telefone, s.descricao, d.val_diaria, p.idpessoa, d.iddomestico from pessoa  p, domestico d, logradouro l, servicos s where p.idpessoa=d.pessoa_idpessoa and p.idpessoa=l.pessoa_idpessoa and p.idpessoa=s.domestico_pessoa_idpessoa and l.cidade="
+						+ "'" + "blumenau" + "' ";
 
 				PreparedStatement stmt = con.prepareStatement(query);
 				ResultSet rs = stmt.executeQuery(query);
@@ -125,7 +127,7 @@ if (isDomestica.equals("false")){
 		%>
 
 		<tr>
-			<td id="teste">
+			<td id="tabelaResultado">
 				<%
 					out.println(rs.getString(1));
 				%>
@@ -150,7 +152,31 @@ if (isDomestica.equals("false")){
 					out.println(rs.getString(5));
 				%>
 			</td>
+		</tr>
+
+		<%
+			}
+
+		%>
+		</tbody>
+
+	</table>
+
+
+<%
+
+
+		con.close();
+
+	} catch (Exception e) {
+		out.println(e.toString());
+
+	}
+%>		
+
+
 				</div>
 			</div>
 		</div>
 	</div>
+	</body>
