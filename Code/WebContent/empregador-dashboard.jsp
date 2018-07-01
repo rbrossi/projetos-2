@@ -8,14 +8,17 @@
 	String email = null;
 	String isDomestica = null;
 	String nome = null;
+	String idPessoa = null;
+	
 	email = request.getSession().getAttribute("user").toString();
 	isDomestica = request.getSession().getAttribute("isDomestica").toString();
 	Connection conGetNome = ConectaBD.getConnection();
-	String queryGetNome = "select nome FROM pessoa where email=" + "'" + email + "'";
+	String queryGetNome = "select nome, idpessoa FROM pessoa where email=" + "'" + email + "'";
 	PreparedStatement stmtGetNome = conGetNome.prepareStatement(queryGetNome);
 	ResultSet rsGetNome = stmtGetNome.executeQuery(queryGetNome);
 	while (rsGetNome.next()) {
 		nome = rsGetNome.getString(1);
+		idPessoa = rsGetNome.getString(2);
 	}
 	conGetNome.close();
 
@@ -86,9 +89,8 @@
 
 						<thead>
 
-							<th><input type="checkbox" id="checkall" /></th>
 							<th>Nome</th>
-							<th>Dia da semana</th>
+							<th>Data</th>
 							<th>Período</th>
 							<th>Contato</th>
 							<th>Valor</th>
@@ -96,16 +98,70 @@
 						</thead>
 						<tbody>
 
-							<tr>
-								<td><input type="checkbox" class="checkthis" /></td>
-								<td>Juliana da Silva</td>
-								<td>Segundas-feiras</td>
-								<td>Matutino</td>
-								<td>+923335586757</td>
-								<td>R$ 50</td>
-							</tr>
+
+		<%
+			try {
+				Connection con = ConectaBD.getConnection();
+
+				String query = "select p.nome, a.data, a.hora_inicio, a.hora_fim, p.telefone, d.val_diaria from pessoa p, contratacao c, agenda a, domestico d where c.domestico_pessoa_idpessoa=p.idpessoa AND c.domestico_pessoa_idpessoa=a.domestico_pessoa_idpessoa AND c.domestico_pessoa_idpessoa=d.pessoa_idpessoa AND c.empregador_pessoa_idpessoa=" +"'"+ idPessoa +"'";
+
+				PreparedStatement stmt = con.prepareStatement(query);
+				ResultSet rs = stmt.executeQuery(query);
+				while (rs.next()) {
+		%>
+
+		<tr>
+			<td id="tabelaResultado">
+				<%
+					out.println(rs.getString(1));
+				%>
+			</td>
+			<td>
+				<%
+					out.println(rs.getString(2));
+				%>
+			</td>
+			
+			<td>
+				<%
+					out.println(rs.getString(3)+ " as ");
+					out.println(rs.getString(4));
+				%>
+			</td>
+			
+			<td>
+				<%
+					out.println(rs.getString(5));
+				%>
+			</td>
+
+			
+			<td>
+				<%
+					out.println(rs.getString(6));
+				%>
+			</td>
+		</tr>
+
+		<%
+			}
+
+		%>
+
 						</tbody>
 					</table>
+					
+					
+<%
+
+
+		con.close();
+
+	} catch (Exception e) {
+		out.println(e.toString());
+
+	}
+%>	
 				</div>			
 			</div>
 		</div>

@@ -107,7 +107,7 @@ if (isDomestica.equals("false")){
 		<thead>
 			<tr>
 				<th>Nome</th>
-				<th>Telefone</th>
+				<th>Contato</th>
 				<th>Endereço</th>
 				<th>Descrição do serviço</th>
 				<th>Data</th>
@@ -115,6 +115,7 @@ if (isDomestica.equals("false")){
 				<th>Status</th>
 			</tr>
 		</thead>
+		<tbody>
 
 		<%
 			try {
