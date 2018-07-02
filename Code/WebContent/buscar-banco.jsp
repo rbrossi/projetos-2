@@ -128,31 +128,29 @@
 					out.println(rs.getString(5));
 				%>
 			</td>
-			<td>
-					<script type="text/javascript">
-								$(".me").click(
-										function() {
-											var cells = $(this).closest(
-													"tr").children("td");
-											var cell1 = cells.eq(0).text();
-											document.getElementById("diarista-nome").innerHTML = "Contratar "+cell1;
-											document.getElementById("diarista-nome2").innerHTML = cell1;
-										});
-								var cell1 = cells.eq(0).text();
-								</script>
-			
-			
-				<!-- Button trigger modal -->
+			<td><script type="text/javascript">
+				$(".me")
+						.click(
+								function() {
+									var cells = $(this).closest("tr").children(
+											"td");
+									var cell1 = cells.eq(0).text();
+									document.getElementById("diarista-nome").innerHTML = "Contratar "
+											+ cell1;
+									document.getElementById("diarista-nome2").innerHTML = cell1;
+								});
+				var cell1 = cells.eq(0).text();
+			</script> <!-- Button trigger modal -->
 				<button type="button" class="me btn-success btn-center"
 					data-toggle="modal" data-target="#exampleModal">Contratar
-					diarista</button> <!-- Modal -->
+					domestico</button> <!-- Modal -->
 				<div class="modal fade" id="exampleModal" tabindex="-1"
 					role="dialog" aria-labelledby="exampleModalLabel"
 					aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								
+
 								<h5 class="modal-title" id="diarista-nome">Contratar
 									diarista</h5>
 								<button type="button" class="close" data-dismiss="modal"
@@ -177,7 +175,12 @@
 										<input type="time" class="form-control date" id="hFinal"
 											name="hFinal" placeholder="Data do serviço" required>
 									</div>
-									<input type="hidden"id="diarista-nome2" name="diarista-nome"></input>								
+									<div class="input-group control-group after-add-more">
+										<input type="text" name="descricao" id="descricao"
+											class="form-control"
+											placeholder="Descrição dos serviços a serem executados.">
+									</div>
+									<input type="hidden" id="diarista-nome2" name="diarista-nome"></input>
 								</div>
 								<div class="modal-footer">
 									<button type="submit">Contratar</button>
@@ -185,9 +188,7 @@
 							</form>
 						</div>
 					</div>
-				</div>
-
-			</td>
+				</div></td>
 		</tr>
 
 		<%
