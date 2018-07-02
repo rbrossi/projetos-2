@@ -110,7 +110,7 @@
 							<th>Contato</th>
 							<th>Valor</th>
 							<th>Situação</th>
-							<th>Avaliar</th>
+							<th></th>
 
 						</thead>
 						<tbody>
@@ -120,7 +120,7 @@
 			try {
 				Connection con = ConectaBD.getConnection();
 
-				String query = "select p.nome, a.data, a.hora_inicio, a.hora_fim, p.telefone, d.val_diaria, c.status from pessoa p, contratacao c, agenda a, domestico d where c.domestico_pessoa_idpessoa=p.idpessoa AND c.domestico_pessoa_idpessoa=a.domestico_pessoa_idpessoa AND c.domestico_pessoa_idpessoa=d.pessoa_idpessoa AND c.empregador_pessoa_idpessoa=" +"'"+ idPessoa +"'" +" order by c.status";
+				String query = "select p.nome, DATE_FORMAT(a.data, '%d/%m/%Y'), TIME_FORMAT(a.hora_inicio, '%h:%i'), TIME_FORMAT(a.hora_fim, '%h:%i'), p.telefone, d.val_diaria, c.status from pessoa p, contratacao c, agenda a, domestico d where c.domestico_pessoa_idpessoa=p.idpessoa AND c.domestico_pessoa_idpessoa=a.domestico_pessoa_idpessoa AND c.domestico_pessoa_idpessoa=d.pessoa_idpessoa AND c.empregador_pessoa_idpessoa=" +"'"+ idPessoa +"'" +" order by c.status";
 
 				PreparedStatement stmt = con.prepareStatement(query);
 				ResultSet rs = stmt.executeQuery(query);

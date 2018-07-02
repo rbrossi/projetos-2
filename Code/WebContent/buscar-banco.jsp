@@ -149,28 +149,21 @@
 							</div>
 							<form method="post" action="contratar.jsp">
 								<div class="modal-body">
-									Selecione o dia da semana
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" name="segunda">
-										<label class="form-check-label"> Segunda-feira </label>
+									<label>Escolha uma data</label>
+									<div class="form-group">
+										<input type="date" class="form-control date" id="data"
+											name="dataServico" placeholder="Data do serviço" required>
 									</div>
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" name="terca">
-										<label class="form-check-label"> Terça-feira </label>
+									<label>Horario de Inicio</label>
+									<div class="form-group">
+										<input type="time" class="form-control date" id="hInicio"
+											name="hInicio" placeholder="Data do serviço" required>
 									</div>
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" name="quarta">
-										<label class="form-check-label"> Quarta-feira </label>
+									<label>Horario de Termino</label>
+									<div class="form-group">
+										<input type="time" class="form-control date" id="hFinal"
+											name="hFinal" placeholder="Data do serviço" required>
 									</div>
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" name="quinta">
-										<label class="form-check-label"> Quinta-feira </label>
-									</div>
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" name="sexta">
-										<label class="form-check-label"> Sexta-feira </label>
-									</div>
-
 								</div>
 								<div class="modal-footer">
 									<button type="submit">Contratar</button>

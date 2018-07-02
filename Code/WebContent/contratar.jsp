@@ -8,18 +8,12 @@
 <%@include file="/validarUsuario.jsp"%>
 
 <%
-	String segunda = request.getParameter("segunda");
-	String terca = request.getParameter("terca");
-	String quarta = request.getParameter("quarta");
-	String quinta = request.getParameter("quinta");
-	String sexta = request.getParameter("sexta");
+	String data = request.getParameter("dataServico");
+	String hora_inicio = request.getParameter("hInicio");
+	String hora_fim = request.getParameter("hFinal");
+
 
 	
-	System.out.print(segunda);
-	System.out.print(terca);
-	System.out.print(quarta);
-	System.out.print(quinta);
-	System.out.print(sexta);
 	
 	// Contratação
 	String descricao_servico = "teste de insert";
@@ -29,10 +23,6 @@
 	String domestico_pessoa_idpessoa = "27";
 	String status = "0";
 
-	// Agenda
-	String data = "2018-05-29";
-	String hora_inicio = "10:00";
-	String hora_fim = "15:00";
 
 	try {
 
@@ -77,4 +67,7 @@
 	} catch (Exception e) {
 		out.print(e);
 	}
+	response.sendRedirect("buscar-banco.jsp");
 %>
+
+
