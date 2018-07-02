@@ -27,7 +27,6 @@
 <link rel="stylesheet" href="css/r_busca.css">
 </head>
 
-
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="index.jsp">Limpai!</a>
@@ -104,7 +103,7 @@
 		%>
 
 		<tr>
-			<td id="tabelaResultado">
+			<td>
 				<%
 					out.println(rs.getString(1));
 				%>
@@ -130,8 +129,21 @@
 				%>
 			</td>
 			<td>
+					<script type="text/javascript">
+								$(".me").click(
+										function() {
+											var cells = $(this).closest(
+													"tr").children("td");
+											var cell1 = cells.eq(0).text();
+											document.getElementById("diarista-nome").innerHTML = "Contratar "+cell1;
+											document.getElementById("diarista-nome2").innerHTML = cell1;
+										});
+								var cell1 = cells.eq(0).text();
+								</script>
+			
+			
 				<!-- Button trigger modal -->
-				<button type="button" class=" btn-success btn-center"
+				<button type="button" class="me btn-success btn-center"
 					data-toggle="modal" data-target="#exampleModal">Contratar
 					diarista</button> <!-- Modal -->
 				<div class="modal fade" id="exampleModal" tabindex="-1"
@@ -140,7 +152,8 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Contratar
+								
+								<h5 class="modal-title" id="diarista-nome">Contratar
 									diarista</h5>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
@@ -154,16 +167,17 @@
 										<input type="date" class="form-control date" id="data"
 											name="dataServico" placeholder="Data do serviço" required>
 									</div>
-									<label>Horario de Inicio</label>
+									<label>Horário de Inicio</label>
 									<div class="form-group">
 										<input type="time" class="form-control date" id="hInicio"
 											name="hInicio" placeholder="Data do serviço" required>
 									</div>
-									<label>Horario de Termino</label>
+									<label>Horário de Término</label>
 									<div class="form-group">
 										<input type="time" class="form-control date" id="hFinal"
 											name="hFinal" placeholder="Data do serviço" required>
 									</div>
+									<input type="hidden"id="diarista-nome2" name="diarista-nome"></input>								
 								</div>
 								<div class="modal-footer">
 									<button type="submit">Contratar</button>
