@@ -8,23 +8,74 @@
 <%@include file="/validarUsuario.jsp"%>
 
 <%
+	String email = request.getSession().getAttribute("user").toString();
+
 	String data = request.getParameter("dataServico");
 	String hora_inicio = request.getParameter("hInicio");
 	String hora_fim = request.getParameter("hFinal");
+	String nome_diarista = request.getParameter("diarista-nome");
 
-
-	
-	
 	// Contratação
-	String descricao_servico = "teste de insert";
-	String empregador_idempregador = "14";
-	String empregador_pessoa_idpessoa = "24";
-	String domestico_iddomestico = "10";
-	String domestico_pessoa_idpessoa = "27";
+	String descricao_servico = "VAI PORRAAAA";
+	String empregador_idempregador = "";
+	String empregador_pessoa_idpessoa = "";
+	String domestico_iddomestico = "";
+	String domestico_pessoa_idpessoa = "";
 	String status = "0";
 
-
 	try {
+
+		//capturar dados
+		//ID DOMESTICO
+		Connection conGetIdDomestico = ConectaBD.getConnection();
+		String queryGetIdDomestico = "select d.iddomestico from domestico d, pessoa p where p.idpessoa=d.pessoa_idpessoa and p.nome="
+				+ "'" + nome_diarista + "'";
+		PreparedStatement stmtGetIDDomestico = conGetIdDomestico.prepareStatement(queryGetIdDomestico);
+		ResultSet rsGetIDDomestico = stmtGetIDDomestico.executeQuery(queryGetIdDomestico);
+		while (rsGetIDDomestico.next()) {
+			domestico_iddomestico = rsGetIDDomestico.getString(1);
+		}
+
+		conGetIdDomestico.close();
+
+		//ID PESSOA DOMESTICO
+
+		Connection conGetIdDomesticoPessoa = ConectaBD.getConnection();
+		String queryGetIdDomesticoPessoa = "select d.pessoa_idpessoa from domestico d, pessoa p where p.idpessoa=d.pessoa_idpessoa and p.nome="
+				+ "'" + nome_diarista + "'";
+		PreparedStatement stmtGetIDDomesticoPessoa = conGetIdDomesticoPessoa
+				.prepareStatement(queryGetIdDomesticoPessoa);
+		ResultSet rsGetIDDomesticoPessoa = stmtGetIDDomesticoPessoa.executeQuery(queryGetIdDomesticoPessoa);
+		while (rsGetIDDomesticoPessoa.next()) {
+			domestico_pessoa_idpessoa = rsGetIDDomesticoPessoa.getString(1);
+		}
+
+		conGetIdDomesticoPessoa.close();
+
+		//ID EMPREGADOR		 
+
+		Connection conGetIdEmpregador = ConectaBD.getConnection();
+		String queryGetIdEmpregador = "select e.idempregador from pessoa p, empregador e where e.pessoa_idpessoa=p.idpessoa and p.email="
+				+ "'" + email + "'";
+		PreparedStatement stmtGetIDEmpregador = conGetIdEmpregador.prepareStatement(queryGetIdEmpregador);
+		ResultSet rsGetIDEmpregador = stmtGetIDEmpregador.executeQuery(queryGetIdEmpregador);
+		while (rsGetIDEmpregador.next()) {
+			empregador_idempregador = rsGetIDEmpregador.getString(1);
+		}
+		conGetIdEmpregador.close();
+
+		//ID PESSOA EMPREGADOR		
+
+		Connection conGetIdEmpregadorPessoa = ConectaBD.getConnection();
+		String queryGetIdEmpregadorPessoa = "select e.pessoa_idpessoa from pessoa p, empregador e where e.pessoa_idpessoa=p.idpessoa and p.email ="
+				+ "'" + email + "'";
+		PreparedStatement stmtGetIDEmpregadorPessoa = conGetIdEmpregadorPessoa
+				.prepareStatement(queryGetIdEmpregadorPessoa);
+		ResultSet rsGetIDEmpregadorPessoa = stmtGetIDEmpregadorPessoa.executeQuery(queryGetIdEmpregadorPessoa);
+		while (rsGetIDEmpregadorPessoa.next()) {
+			empregador_pessoa_idpessoa = rsGetIDEmpregadorPessoa.getString(1);
+		}
+		conGetIdEmpregadorPessoa.close();
 
 		// Contratação
 		//	INSERT INTO `mysqlpor_limpai_db`.`contratacao`(`idcontratacao`,`descricao_servico`,`empregador_idempregador`,
@@ -45,8 +96,7 @@
 		stmtContratar.execute();
 		stmtContratar.close();
 		conContratar.close();
-		
-		
+
 		//Agenda
 		//INSERT INTO `mysqlpor_limpai_db`.`agenda` (`data`, `hora_inicio`, `hora_fim`, `domestico_iddomestico`, `domestico_pessoa_idpessoa`) VALUES ('2018-05-29', '10:00', '15:00', '10', '27');
 
@@ -62,7 +112,6 @@
 		stmtAgenda.execute();
 		stmtAgenda.close();
 		conAgenda.close();
-
 
 	} catch (Exception e) {
 		out.print(e);
